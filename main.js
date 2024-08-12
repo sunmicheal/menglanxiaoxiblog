@@ -1,8 +1,8 @@
 function changeImage() {
   var images = [
-    "/img/广告2.jpg",
-    "/img/广告3.jpg",
-    "/img/广告1.jpg"
+    "img/广告2.jpg",
+    "img/广告3.jpg",
+    "img/广告1.jpg"
   ]; 
 
 var randomIndex = Math.floor(Math.random() * images.length); // 生成随机索引
