@@ -34,6 +34,34 @@ const ShowAdButton = () => {
             // add here the function that should be executed after viewing the ad
         })
     }
+    function show_8453362() {
+    // 这里应该是显示广告的逻辑，并返回一个 Promise
+    // 例如，使用 fetch 调用广告服务器的 API，然后返回一个 Promise
+    return new Promise((resolve, reject) => {
+        // 假设这里有一些异步操作来显示广告
+        // ...
+
+        // 广告显示完成后，我们解决这个 Promise
+        resolve();
+    });
+}
+
+// 定义 showAd 函数
+const showAd = () => {
+    show_8453362().then(() => {
+        // 广告显示后应该执行的逻辑
+        console.log('广告已显示，执行后续操作...');
+
+        // 您可以在这里添加任何您想要执行的代码
+        // 例如，更新用户界面、记录事件、重定向到另一个页面等
+    }).catch((error) => {
+        // 处理错误情况
+        console.error('显示广告时出错:', error);
+    });
+}
+
+// 调用 showAd 函数来显示广告
+showAd();
 
     return <button onClick={showAd}>Show ad</button>
 }
