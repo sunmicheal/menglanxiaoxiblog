@@ -1,36 +1,57 @@
-<html>
- <head> 
-  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
-  <title>WebCat</title> 
-  <script src="//niphaumeenses.net/vignette.min.js" data-zone="8453362" data-sdk="show_8453362"></script> 
-    <script>
-     const ShowAdButton = () => {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Component Example</title>
+    <!-- 引入 React 和 ReactDOM 的 UMD 构建 -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src='//niphaumeenses.net/vignette.min.js' data-zone='8453362' data-sdk='show_8453362'></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+// 不使用 import 语句
+const React = window.React;
+const ReactDOM = window.ReactDOM;
+
+const ShowAdButton = () => {
+    // 使用 React.useEffect 替代 useEffect
     React.useEffect(() => {
-        if (window.show_8453362) {
-            return
+        if (!window.show_8453362) {
+            console.error('Function window.show_8453362 not found or is not a function');
+            return;
         }
 
-        const tag = document.createElement('script')
+        const tag = document.createElement('script');
+        tag.src = '//niphaumeenses.net/vignette.min.js';
+        tag.dataset.zone = '8453362';
+        tag.dataset.sdk = 'show_8453362';
 
-        tag.src = '//niphaumeenses.net/vignette.min.js'
-        tag.dataset.zone = '8453362'
-        tag.dataset.sdk = 'show_8453362'
+        document.body.appendChild(tag);
+    }, []);
 
-        document.body.appendChild(tag)
-    }, [])
+    const showAd = async () => {
+        try {
+            if (!window.show_8453362 || typeof window.show_8453362 !== 'function') {
+                throw new Error('Function window.show_8453362 not found or is not a function');
+            }
+            await window.show_8453362();
+            console.log('Ad displayed successfully.');
+            // Add any additional logic to be executed after the ad is displayed
+        } catch (error) {
+            console.error('Error displaying the ad:', error);
+        }
+    };
 
-    const showAd = () => {
-        show_8453362().then(() => {
-            // add here the function that should be executed after viewing the ad
-        })
-    }
+    // 使用 React.createElement 替代 JSX
+    return React.createElement('button', { onClick: showAd }, 'Show ad');
+};
 
-    return <button onClick={showAd}>Show ad</button>
-}
-  </script>
- </head> 
- <body id="v1"> 
-  <button class="ShowAdButton">Show ad</button>
- </body>
- 
+// 使用 ReactDOM.render 挂载组件
+ReactDOM.render(React.createElement(ShowAdButton), document.getElementById('root'));
+</script>
+</body>
+<script src="main.js" defer></script>
 </html>
