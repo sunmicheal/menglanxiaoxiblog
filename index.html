@@ -3,55 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Component Example</title>
-    <!-- 引入 React 和 ReactDOM 的 UMD 构建 -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <title>我的网站</title>
     <script src='//niphaumeenses.net/vignette.min.js' data-zone='8453362' data-sdk='show_8453362'></script>
+    <script>
+    function showAd() {
+               alert('Ad shown!');
+           }
+    </script>
 </head>
 <body>
-<div id="root"></div>
 <script>
-// 不使用 import 语句
-const React = window.React;
-const ReactDOM = window.ReactDOM;
 
 const ShowAdButton = () => {
-    // 使用 React.useEffect 替代 useEffect
     React.useEffect(() => {
-        if (!window.show_8453362) {
-            console.error('Function window.show_8453362 not found or is not a function');
-            return;
+        if (window.show_8453362) {
+            return
         }
 
-        const tag = document.createElement('script');
-        tag.src = '//niphaumeenses.net/vignette.min.js';
-        tag.dataset.zone = '8453362';
-        tag.dataset.sdk = 'show_8453362';
+        const tag = document.createElement('script')
 
-        document.body.appendChild(tag);
-    }, []);
+        tag.src = '//niphaumeenses.net/vignette.min.js'
+        tag.dataset.zone = '8453362'
+        tag.dataset.sdk = 'show_8453362'
 
-    const showAd = async () => {
-        try {
-            if (!window.show_8453362 || typeof window.show_8453362 !== 'function') {
-                throw new Error('Function window.show_8453362 not found or is not a function');
-            }
-            await window.show_8453362();
-            console.log('Ad displayed successfully.');
-            // Add any additional logic to be executed after the ad is displayed
-        } catch (error) {
-            console.error('Error displaying the ad:', error);
-        }
-    };
+        document.body.appendChild(tag)
+    }, [])
 
-    // 使用 React.createElement 替代 JSX
-    return React.createElement('button', { onClick: showAd }, 'Show ad');
-};
+    const showAd = () => {
+        show_8453362().then(() => {
+            // add here the function that should be executed after viewing the ad
+        })
+    }
 
-// 使用 ReactDOM.render 挂载组件
-ReactDOM.render(React.createElement(ShowAdButton), document.getElementById('root'));
+    return <button onClick={showAd}>Show ad</button>
+}
 </script>
+
 </body>
-<script src="main.js" defer></script>
+<button onClick={showAd}>Show ad</button>
+
 </html>
