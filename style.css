@@ -1,4 +1,4 @@
-/* 重置浏览器默认样式 */
+/* Reset some default styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,118 +6,162 @@
 }
 
 body, html {
-    width: 100%;
     height: 100%;
-    font-family: Arial, sans-serif; /* 设置字体 */
-    background-color: #FFFFFF; /* 背景颜色 */
-    overflow: hidden; /* 防止滚动条出现 */
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* 背景样式 */
-.background {
+body {
+    /* 淡蓝色到白色的斜角渐变背景 */
+    background: linear-gradient(135deg, #1CAAFF 0%, #ffffff 100%);
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Header styles */
+.header {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.header h1 {
+    color: #0d47a1; /* 深蓝色标题 */
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Main content styles */
+.main-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff; /* 白色背景 */
+    border-radius: 8px; /* 圆角边框 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影 */
+}
+
+.main-content p {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #0d47a1;
+    color: #fff;
     position: absolute;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    background-color: #B3B3B3;
-    z-index: -1; /* 确保背景在其他内容后面 */
 }
 
-
-.feature-container h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
+.footer p {
+    margin: 0;
 }
 
-/* 按钮样式 */
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #2099FF;
-    color: white;
-    border-radius: 20px; /* 圆角 */
-    text-decoration: none;
-    font-size: 40px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: #0e7bea;
-}
-
-/* 导航栏样式 */
-.nav-bar {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    font-size: 18px;
-    color: #FFFFFF;
-    z-index: 1000;
-}
-
-.nav-bar a {
-    text-decoration: none;
-    color: inherit;
+.balance-box {
+    margin-top: 30px;
+    background: #ffffff; /* 白色背景 */
+    border-radius: 10px; /* 圆角边框 */
     padding: 10px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微的阴影 */
+    text-align: center;
+    width: 320px; /* 设置一个宽度 */
+    height: 150px; /* 设置一个高度 */
+    clip-path: polygon(0 0, 100% 0, 100% 78%, 0% 100%); /* 右下角向上倾斜30度 */
+    position: relative;
 }
 
-.nav-bar a:hover {
-    background-color: #FFFFFF;
+.balance-box h1 {
+    margin: 0;
+    color: #333; /* 文字颜色 */
+    font-size: 1.5rem;
+    padding-left: 10px;
+    padding-top: 0px;
+    text-align: left;
 }
+
+.balance-box::before {
+    content: ''; /* 必须的伪元素内容 */
+    position: absolute;
+    left: 12%; /* 居中对齐 */
+    top: 70px;
+    bottom: -10px; /* 根据需要调整距离 */
+    width: 30px; /* 大圆的直径 */
+    height: 30px; /* 大圆的直径 */
+    background-color: #007bff; /* 大圆的颜色 */
+    border-radius: 50%; /* 圆形 */
+    transform: translateX(-50%); /* 水平居中 */
+    z-index: -1; /* 确保圆在盒子下方 */
+}
+
+.balance-box::after {
+    content: ''; /* 必须的伪元素内容 */
+    position: absolute;
+    left: 12%; /* 居中对齐 */
+    top: 75px;
+    bottom: -20px; /* 根据需要调整距离 */
+    width: 20px; /* 小圆的直径 */
+    height: 20px; /* 小圆的直径 */
+    background-color: #FFFFFF; /* 小圆的颜色 */
+    border-radius: 50%; /* 圆形 */
+    transform: translateX(-50%); /* 水平居中 */
+    z-index: 0; /* 确保小圆在大圆下方 */
+}
+
+.balance-shape {
+    position: absolute;
+    left: 20px; /* 根据容器的padding调整 */
+    right: 20px; /* 根据容器的padding调整 */
+    top: 200px; /* 根据需要调整顶部位置 */
+    width: 320px; /* 增加宽度属性 */
+    height: 200px; /* 平行四边形的高度 */
+    background-color: #FFFFFF; /* 平行四边形的颜色 */
+    border-radius: 15px; /* 圆角 */
+    transform: skewY(-6deg); /* 沿X轴负方向倾斜20度 */
+    transform-origin: bottom right; /* 设置倾斜的原点为右下角 */
+    z-index: -1;
+}
+
+.watchads h1 {
+    margin: 0;
+    color: #333; /* 文字颜色 */
+    font-size: 1.5rem;
+    padding-left: 10px;
+    padding-top: 40px;
+    text-align: left;
+    z-index: 999;
+}
+
+
+/* 在 <style> 标签中或者一个外部的CSS文件中 */
 .ad-button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 150px;
-    height: 150px;
-    background-color: #8DE9FF;
+    width: 50px;
+    height: 50px;
     border-radius: 50%; /* 圆形 */
-    color: white;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s ease; /* 平滑的变换效果 */
+    cursor: pointer; /* 鼠标悬停时显示指针 */
+    font-size: 15px; /* 根据需要调整字体大小 */
+    border: none; /* 移除边框 */
+    outline: none; /* 移除默认焦点轮廓 */
+    /* 自定义样式 */
+    /* 您可以添加其他样式，如阴影、颜色变化等 */
 }
-#count {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    border-radius: 10%; /* 圆角为容器宽度的10% */
-    font-size: 23px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-align: right;
-    z-index: 1;
+
+.ad-button:focus {
+    outline: none; /* 移除焦点时的轮廓 */
+    box-shadow: none; /* 移除焦点时的阴影 */
+    /* 添加您希望在焦点时显示的样式 */
+    /* 例如，您可以添加一个边框或背景颜色变化 */
+    border: 2px solid #007bff; /* 蓝色边框 */
+    background-color: #f8f9fa; /* 浅灰色背景 */
 }
-.balance {
-  font-size: 20px;
-  font-weight: bold;
-  color: #BCBCBC;
-  z-index: 1000;
-  top: 3%;
-  left: 2%;
-  position: absolute;
-}
-.导航栏背景 {
-  top: 91%;
-  left: 11%;
-  width: 280px;
-  height: 48px;
-  z-index: 0;
-  background-color: #86D1FF;
-  position: absolute;
-  border-radius: 15px;
-}
+
+

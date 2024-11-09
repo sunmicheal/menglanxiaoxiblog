@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1CAAFF 0%, #ffffff 100%);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.admin-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 100%;
+}
+
+.admin-container h2 {
+    text-align: center;
+}
+
+#admin-withdrawal-history {
+    list-style: none;
+    padding: 0;
+}
+
+#admin-withdrawal-history li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: #007bff;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.status-button:hover {
+    background-color: #f8f9fa;
+}
+
+.status-button:disabled {
+    color: #6c757d;
+    cursor: not-allowed;
+}
