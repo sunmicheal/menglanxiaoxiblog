@@ -23,27 +23,50 @@ document.addEventListener('DOMContentLoaded', function() {
     nextButton.addEventListener('click', function() {
         const amount = parseFloat(withdrawalAmountInput.value);
         const walletNumber = yoomoneyWalletInput.value.trim();
+
         if (amount > count) {
             alert('Insufficient funds for withdrawal.');
         } else {
-            count -= amount; // 扣除金额
-            localStorage.setItem('count', count); // 更新余额
-
-            // 保存提现历史记录
-            const histories = JSON.parse(localStorage.getItem('withdrawalHistories')) || [];
-            const history = {
+            // 准备要发送的数据
+            const data = {
                 walletNumber: walletNumber,
                 amount: amount,
-                date: new Date().toLocaleString(),
-                status: '未打款' // 初始状态为未打款
+                date: new Date().toISOString(),
+                status: '未打款'
             };
-            histories.push(history);
-            localStorage.setItem('withdrawalHistories', JSON.stringify(histories));
 
-            alert('Withdrawal successful! New balance: ' + count);
-            yoomoneyWalletInput.value = ''; // 清空输入字段
-            withdrawalAmountInput.value = '';
-            nextButton.disabled = true; // 禁用按钮直到下一次输入
+            // 发送数据到后台服务器
+            fetch('http://192.168.1.86:5000/api/history', { // 替换为您的服务器地址
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(responseData => {
+                if (responseData.message) {
+                    alert(responseData.message);
+                }
+
+                // 更新余额
+                count -= amount;
+                localStorage.setItem('count', count);
+
+                // 保存提现历史记录
+                const histories = JSON.parse(localStorage.getItem('withdrawalHistories')) || [];
+                histories.push(data);
+                localStorage.setItem('withdrawalHistories', JSON.stringify(histories));
+
+                alert('Withdrawal successful! New balance: ' + count);
+                yoomoneyWalletInput.value = ''; // 清空输入字段
+                withdrawalAmountInput.value = '';
+                nextButton.disabled = true; // 禁用按钮直到下一次输入
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Withdrawal failed. Please try again.');
+            });
         }
     });
 
